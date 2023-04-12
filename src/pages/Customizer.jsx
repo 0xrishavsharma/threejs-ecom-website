@@ -22,22 +22,18 @@ const Customizer = () => {
                     <>
                         <motion.div
                             key="custom"
-                            className="customizer"
+                            className="absolute top-0 left-0 z-10"
                             {...slideAnimation('left')}
                         >
-                            <div className='flex items-center min-h-screen'>
-                                <div className='editortabs-container tabs'>
-                                    {
-                                        EditorTabs.map((tab, index) => {
-                                            return (
-                                                <Tab
-                                                    key={tab.name}
-                                                    tab={tab}
-                                                    handleClick={() => { }}
-                                                />
-                                            )
-                                        })
-                                    }
+                            <div className="flex items-center min-h-screen">
+                                <div className="editortabs-container tabs">
+                                    {EditorTabs.map((tab) => (
+                                        <Tab
+                                            key={tab.name}
+                                            tab={tab}
+                                            handleClick={() => { }}
+                                        />
+                                    ))}
                                 </div>
                             </div>
                         </motion.div>
