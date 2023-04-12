@@ -51,6 +51,25 @@ const Customizer = () => {
                                 handleClick={() => state.isHome = true}
                             />
                         </motion.div>
+                        <motion.div
+                            className='filtertabs-container'
+                            {...slideAnimation('up')}
+                        >
+                            {
+                                FilterTabs.map((tab, index) => {
+                                    return (
+                                        <Tab
+                                            key={tab.name}
+                                            tab={tab}
+                                            isFilterTab
+                                            isActiveTab=""
+                                            handleClick={() => { }}
+                                        />
+                                    )
+                                })
+                            }
+
+                        </motion.div>
                     </>
                 )
 
