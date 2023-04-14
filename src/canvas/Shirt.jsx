@@ -14,6 +14,7 @@ const Shirt = () => {
     const fullTexture = useTexture(snap.fullDecal);
 
     // We will be playing with easing for a bit to apply color smoothly and not dramatically
+    // By using useFrame we are ensuring that the color transition's smoothly 
     useFrame((state, delta) => {
         easing.dampC(materials.lambert1.color,
             snap.color,
@@ -22,8 +23,15 @@ const Shirt = () => {
         )
     })
 
+    // Sometimes the shirt wouldn't update and to resolve this we need to pay key attribute to group element 
+    // And that key simply can't be a state. We need to create a "string of the current state that we will pass" as a value to the key
+
+    const stateString = JSON.stringify(snap)
     return (
-        <group>
+        <group
+            // By adding this, react will keep track of string variable and will render the model whenever state changes
+            key={stateString}
+        >
             <mesh
                 castShadow
                 geometry={nodes.T_Shirt_male.geometry}
