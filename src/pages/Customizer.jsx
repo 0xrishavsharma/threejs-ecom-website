@@ -70,6 +70,14 @@ const Customizer = () => {
                 state.isLogoTexture = true;
                 state.isFullTexture = false;
         }
+
+        // after setting the state, updating the activeFilterTab
+        setActiveEditorTab((prevState) => {
+            return {
+                ...prevState,
+                [tabName]: !prevState[tabName]
+            }
+        })
     }
 
     const readFile = (type) => {
