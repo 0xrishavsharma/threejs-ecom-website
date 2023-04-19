@@ -1,0 +1,11 @@
+module.exports = {
+  proseWrap: "always",
+  overrides: [
+    {
+      files: "*.md",
+      options: {
+        listItemIndent: "1",
+      },
+    },
+  ],
+};

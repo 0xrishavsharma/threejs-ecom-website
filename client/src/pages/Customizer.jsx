@@ -44,11 +44,32 @@ const Customizer = () => {
                     readFile={readFile}
                 />
             case "aipicker":
-                return <AIPicker />
+                return <AIPicker
+                    prompt={prompt}
+                    setPrompt={setPrompt}
+                    generatingImg={generatingImg}
+                    handleSubmit={handleSubmit}
+
+                />
             default:
                 return null;
         }
     };
+
+    const handleSubmit = (type) => {
+        if (!prompt) {
+            alert("Please enter a prompt");
+            return;
+        }
+        try {
+            // call our backend to generate an ai image for us
+        } catch (err) {
+            alert(`Something went wrong. Please try again later.${err}`)
+        } finally {
+            setGeneratingImg(false);
+            setActiveEditorTab("");
+        }
+    }
 
     const handleDecals = (type, result) => {
         const decalType = DecalTypes[type];
@@ -65,14 +86,14 @@ const Customizer = () => {
                 state.isLogoTexture = !activeFilterTab[tabName];
                 break;
             case "stylishShirt":
-                state.isLogoTexture = !activeFilterTab[tabName];
+                state.isFullTexture = !activeFilterTab[tabName];
             default:
                 state.isLogoTexture = true;
                 state.isFullTexture = false;
         }
 
         // after setting the state, updating the activeFilterTab
-        setActiveEditorTab((prevState) => {
+        setActiveFilterTab((prevState) => {
             return {
                 ...prevState,
                 [tabName]: !prevState[tabName]
