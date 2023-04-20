@@ -56,13 +56,26 @@ const Customizer = () => {
         }
     };
 
-    const handleSubmit = (type) => {
+    const handleSubmit = async (type) => {
         if (!prompt) {
             alert("Please enter a prompt");
             return;
         }
         try {
             // call our backend to generate an ai image for us
+            setGeneratingImg(true);
+            const response = await fetch('http://localhost:8080/api/v1/dalle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt
+                })
+            })
+            const data = await response.json();
+            handleDecals(type, `data:image/png;base64,${data.photo}`);
+
         } catch (err) {
             alert(`Something went wrong. Please try again later.${err}`)
         } finally {
@@ -86,10 +99,12 @@ const Customizer = () => {
                 state.isLogoTexture = !activeFilterTab[tabName];
                 break;
             case "stylishShirt":
-                state.isFullTexture = !activeFilterTab[tabName];
+                state.isFullTexture = activeFilterTab[tabName];
+                break;
             default:
                 state.isLogoTexture = true;
                 state.isFullTexture = false;
+                break;
         }
 
         // after setting the state, updating the activeFilterTab

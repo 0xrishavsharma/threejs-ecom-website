@@ -8,8 +8,7 @@ This website helps user identify how a t-shirt would look like using a 3d model.
 -   Rotate the shirt a little with the cursor movement.
 -   Upload and apply the logo of their choice
 -   Convert the logo into a full texture being applied on the shirt in real time
--   Using OpenAI's GPT-3.5 APIs
--   Use DALL-E's API's to generate the logos for us
+-   Using OpenAI's GPT-3.5 API they'll be able to generate textures and logos for us
 
 ### My experience while building this project
 
