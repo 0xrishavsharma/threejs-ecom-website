@@ -64,7 +64,7 @@ const Customizer = () => {
         try {
             // call our backend to generate an ai image for us
             setGeneratingImg(true);
-            const response = await fetch('http://localhost:8080/api/v1/dalle', {
+            const response = await fetch('https://threejs-ai-project-4dt3.onrender.com/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
